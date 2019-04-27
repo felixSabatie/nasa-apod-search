@@ -9,10 +9,19 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ApodComponent implements OnInit {
   @Input() apod: ApodInfos;
+  showModal = false;
 
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+  }
+
+  openDetails() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 
 }

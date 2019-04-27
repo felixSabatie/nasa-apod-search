@@ -1,4 +1,4 @@
-<div class="apod box-shadow">
+<div class="apod box-shadow" (click)="openDetails()">
   <div class="thumbnail">
     <img class="thumbnail-content" *ngIf="apod.mediaType === 'image'" [src]="apod.url" [alt]="apod.title">
     <iframe class="thumbnail-content" *ngIf="apod.mediaType === 'video'" [src]="sanitizer.bypassSecurityTrustResourceUrl(apod.url)" frameborder="0"></iframe>
@@ -7,4 +7,8 @@
     <div class="title">{{apod.title}}</div>
     <div class="date">{{apod.date | date: 'dd LLLL yyyy' : 'UTC'}}</div>
   </div>
+
+  <app-modal [modalTitle]="apod.title" [show]="showModal" (close)="closeModal()" (click)="$event.stopPropagation()">
+    Modal works :)
+  </app-modal>
 </div>
