@@ -30,7 +30,9 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "es5BrowserSupport": true
+            "es5BrowserSupport": true,
+            "baseHref": "/nasa-apod-search/",
+            "deployUrl": "/nasa-apod-search/"
           },
           "configurations": {
             "production": {
