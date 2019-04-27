@@ -1,3 +1,9 @@
-<p>
-  search-form works!
-</p>
+<div class="search-form">
+    <input type="text" [(ngModel)]="startDate" name="start-date" [max]="endDate"
+      [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" autocomplete="off" required>
+    <owl-date-time pickerType="calendar" #dt1></owl-date-time>
+
+    <input type="text" [(ngModel)]="endDate" name="end-date" [min]="startDate"
+      [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" autocomplete="off" required>
+    <owl-date-time pickerType="calendar" #dt2></owl-date-time>
+</div>
