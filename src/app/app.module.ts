@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { SearchComponent } from './views/search/search.component';
+import { ApodComponent } from './components/search/apod/apod.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SearchFormComponent,
-    SearchComponent
+    SearchComponent,
+    ApodComponent
   ],
   imports: [
     BrowserModule,
