@@ -6,7 +6,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
   styleUrls: ['./search-form.component.scss']
 })
 export class SearchFormComponent implements OnInit {
-  @Output() onSearch = new EventEmitter();
+  @Output() launchSearch = new EventEmitter();
   @Input() defaultStartDate: Date;
   @Input() defaultEndDate: Date;
 
@@ -26,7 +26,7 @@ export class SearchFormComponent implements OnInit {
   }
 
   search() {
-    this.onSearch.emit({startDate: this.startDate, endDate: this.endDate});
+    this.launchSearch.emit({startDate: this.startDate, endDate: this.endDate});
   }
 
 }
