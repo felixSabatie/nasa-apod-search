@@ -14,17 +14,21 @@ export class SearchComponent implements OnInit {
   endDate: Date;
   apods: ApodInfos[];
   fetching = false;
+  error = false;
 
   constructor(private route: ActivatedRoute, private nasaApiService: NasaApiService,
               private router: Router, private dateService: DateService) { }
 
   ngOnInit() {
     this.route.queryParamMap.subscribe(queryParams => {
-      // TODO check if dates are valid
       this.startDate = new Date(queryParams.get('startDate'));
       this.endDate = new Date(queryParams.get('endDate'));
 
-      this.searchApi();
+      if (isNaN(this.startDate.getTime()) || isNaN(this.endDate.getTime()) || this.startDate > this.endDate) {
+        this.error = true;
+      } else {
+        this.searchApi();
+      }
     });
   }
 
