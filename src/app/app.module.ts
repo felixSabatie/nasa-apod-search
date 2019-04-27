@@ -11,6 +11,7 @@ import { HomeComponent } from './views/home/home.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { SearchComponent } from './views/search/search.component';
 import { ApodComponent } from './components/search/apod/apod.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ApodComponent } from './components/search/apod/apod.component';
     HomeComponent,
     SearchFormComponent,
     SearchComponent,
-    ApodComponent
+    ApodComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
