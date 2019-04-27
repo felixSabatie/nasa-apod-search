@@ -15,6 +15,7 @@ body, input, button {
 body {
   background: url("/assets/pluto.jpg") no-repeat center center fixed;
   background-size: cover;
+  color: $textColor;
 
   .box-shadow {
     box-shadow: $lightBoxShadow;
