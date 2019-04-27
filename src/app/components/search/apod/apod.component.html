@@ -1,3 +1,10 @@
-<p>
-  apod works!
-</p>
+<div class="apod box-shadow">
+  <div class="thumbnail">
+    <img class="thumbnail-content" *ngIf="apod.mediaType === 'image'" [src]="apod.url" [alt]="apod.title">
+    <iframe class="thumbnail-content" *ngIf="apod.mediaType === 'video'" [src]="sanitizer.bypassSecurityTrustResourceUrl(apod.url)" frameborder="0"></iframe>
+  </div>
+  <div class="infos">
+    <div class="title">{{apod.title}}</div>
+    <div class="date">{{apod.date | date: 'dd LLLL yyyy'}}</div>
+  </div>
+</div>
