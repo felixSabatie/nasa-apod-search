@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DateService } from 'src/app/utils/date.service';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private dateService: DateService) { }
 
   ngOnInit() {
   }
 
   search(e) {
-    console.log(e);
+    this.router.navigate(['/search'], { queryParams: {
+      startDate: this.dateService.dateToUrlParam(e.startDate),
+      endDate: this.dateService.dateToUrlParam(e.endDate),
+    } });
   }
 
 }

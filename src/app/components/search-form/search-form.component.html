@@ -9,7 +9,7 @@
   <div class="date-input">
     <label for="end-date-input">and</label>
     <input id="end-date-input" type="text" [(ngModel)]="endDate" name="end-date" readonly
-      [min]="startDate" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" autocomplete="off" required>
+      [min]="startDate" [max]="today" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" autocomplete="off" required>
     <owl-date-time pickerType="calendar" #dt2></owl-date-time>
   </div>
 
