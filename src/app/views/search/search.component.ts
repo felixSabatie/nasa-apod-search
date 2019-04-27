@@ -13,6 +13,7 @@ export class SearchComponent implements OnInit {
   startDate: Date;
   endDate: Date;
   apods: ApodInfos[];
+  fetching = false;
 
   constructor(private route: ActivatedRoute, private nasaApiService: NasaApiService,
               private router: Router, private dateService: DateService) { }
@@ -29,8 +30,10 @@ export class SearchComponent implements OnInit {
 
   searchApi() {
     // TODO limit number of images requested
+    this.fetching = true;
     this.nasaApiService.search(this.startDate, this.endDate).subscribe(apods => {
       this.apods = apods;
+      this.fetching = false;
     });
   }
 
