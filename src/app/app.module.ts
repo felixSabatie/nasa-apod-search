@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { OwlDateTimeModule, OwlNativeDateTimeModule, OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +23,9 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
     OwlNativeDateTimeModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    {provide: OWL_DATE_TIME_LOCALE, useValue: 'fr'},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

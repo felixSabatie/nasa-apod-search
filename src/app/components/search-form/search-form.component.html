@@ -1,9 +1,17 @@
 <div class="search-form">
-    <input type="text" [(ngModel)]="startDate" name="start-date" [max]="endDate"
-      [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" autocomplete="off" required>
+  <div class="date-input">
+    <label for="start-date-input">Between</label>
+    <input id="start-date-input" type="text" [(ngModel)]="startDate" name="start-date" readonly
+      [max]="endDate" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" autocomplete="off" required>
     <owl-date-time pickerType="calendar" #dt1></owl-date-time>
+  </div>
 
-    <input type="text" [(ngModel)]="endDate" name="end-date" [min]="startDate"
-      [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" autocomplete="off" required>
+  <div class="date-input">
+    <label for="end-date-input">and</label>
+    <input id="end-date-input" type="text" [(ngModel)]="endDate" name="end-date" readonly
+      [min]="startDate" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" autocomplete="off" required>
     <owl-date-time pickerType="calendar" #dt2></owl-date-time>
+  </div>
+
+  <button class="btn">Search</button>
 </div>

@@ -5,6 +5,10 @@ html, body {
   padding: 0;
 }
 
+body, input, button {
+  font-family: 'Open Sans', sans-serif;
+}
+
 body {
   background: url("/assets/pluto.jpg") no-repeat center center fixed;
   background-size: cover;
