@@ -34,4 +34,28 @@
       margin-bottom: 10px;
     }
   }
+
+  .apod-details {
+    padding: 5px;
+
+    .apod-resource {
+      margin-bottom: 10px;
+      .apod-resource-content {
+        width: 100%;
+        min-height: 70vh;
+        max-height: 70vh;
+        object-fit: contain;
+      }
+    }
+
+    .copyright {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .date {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+  }
 }

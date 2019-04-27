@@ -10,6 +10,7 @@ export class SearchFormComponent implements OnInit {
   @Input() defaultStartDate: Date;
   @Input() defaultEndDate: Date;
 
+  today = new Date();
   startDate = new Date();
   endDate = new Date();
 
