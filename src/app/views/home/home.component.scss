@@ -1,0 +1,17 @@
+@import "../../styles/colors";
+
+.home {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .form-container {
+    width: 700px;
+    max-width: 90%;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: $white;
+  }
+}

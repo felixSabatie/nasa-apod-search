@@ -1,0 +1,38 @@
+@import "../../styles/colors";
+
+.search-form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  .date-input {
+    margin-right: 10px;
+
+    input {
+      margin: 10px 0 10px 10px;
+      padding: 9px 5px;
+      border: 1px solid $grey;
+      border-radius: 3px;
+      background-color: $lightGrey;
+      width: 80px;
+
+      cursor: pointer;
+      text-align: center;
+    }
+
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+
+  .btn {
+    margin-left: 20px;
+    background-color: $accentColor;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
