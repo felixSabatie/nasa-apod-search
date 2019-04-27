@@ -1,6 +1,6 @@
 <div class="search">
   <div class="top-bar">
-    <app-search-form></app-search-form>
+    <app-search-form [defaultStartDate]="startDate" [defaultEndDate]="endDate"></app-search-form>
   </div>
   <div class="results">
     <div class="apod" *ngFor="let apod of apods">{{apod.title}}</div>

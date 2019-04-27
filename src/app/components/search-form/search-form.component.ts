@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-search-form',
@@ -7,6 +7,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SearchFormComponent implements OnInit {
   @Output() onSearch = new EventEmitter();
+  @Input() defaultStartDate: Date;
+  @Input() defaultEndDate: Date;
 
   startDate = new Date();
   endDate = new Date();
@@ -14,6 +16,12 @@ export class SearchFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if (this.defaultStartDate) {
+      this.startDate = this.defaultStartDate;
+    }
+    if (this.defaultEndDate) {
+      this.endDate = this.defaultEndDate;
+    }
   }
 
   search() {
