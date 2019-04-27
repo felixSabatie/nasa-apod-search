@@ -22,7 +22,7 @@ export class NasaApiService {
       .pipe(map((response: Array<any>) => response.map(rawApod => {
         return {
           ...rawApod,
-          date: new Date(rawApod.date),
+          date: new Date(Date.parse(rawApod.date)),
           mediaType: rawApod.media_type,
         } as ApodInfos;
       })));

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NasaApiService } from 'src/app/services/nasa-api.service';
 import { ApodInfos } from 'src/app/models/ApodInfos.model';
+import { DateService } from 'src/app/utils/date.service';
 
 @Component({
   selector: 'app-search',
@@ -13,7 +14,8 @@ export class SearchComponent implements OnInit {
   endDate: Date;
   apods: ApodInfos[];
 
-  constructor(private route: ActivatedRoute, private nasaApiService: NasaApiService) { }
+  constructor(private route: ActivatedRoute, private nasaApiService: NasaApiService,
+              private router: Router, private dateService: DateService) { }
 
   ngOnInit() {
     this.route.queryParamMap.subscribe(queryParams => {
@@ -21,15 +23,22 @@ export class SearchComponent implements OnInit {
       this.startDate = new Date(queryParams.get('startDate'));
       this.endDate = new Date(queryParams.get('endDate'));
 
-      this.search();
+      this.searchApi();
     });
   }
 
-  search() {
+  searchApi() {
     // TODO limit number of images requested
     this.nasaApiService.search(this.startDate, this.endDate).subscribe(apods => {
       this.apods = apods;
     });
+  }
+
+  search(e) {
+    this.router.navigate(['/search'], { queryParams: {
+      startDate: this.dateService.dateToUrlParam(e.startDate),
+      endDate: this.dateService.dateToUrlParam(e.endDate),
+    } });
   }
 
 }
