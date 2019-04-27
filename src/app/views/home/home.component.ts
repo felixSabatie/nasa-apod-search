@@ -22,8 +22,8 @@ export class HomeComponent implements OnInit {
   }
 
   dateToUrlParam(date: Date) {
-    const day = date.getDay();
-    const month = date.getMonth();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
     const year = date.getFullYear();
     return `${year}-${month}-${day}`;
   }
