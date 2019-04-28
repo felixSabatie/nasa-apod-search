@@ -17,6 +17,7 @@ export class SearchComponent implements OnInit {
   apods: ApodInfos[];
 
   fetching = false;
+  fetchingMore = false;
   error = false;
 
   constructor(private route: ActivatedRoute, private nasaApiService: NasaApiService,
@@ -31,26 +32,18 @@ export class SearchComponent implements OnInit {
         this.error = true;
       } else {
         if (this.dateService.differenceInDays(this.startDate, this.endDate) > 10) {
-          this.lastDate = this.dateService.addDays(this.startDate, 10);
+          this.lastDate = this.dateService.addDays(this.startDate, 9);
         } else {
           this.lastDate = this.endDate;
         }
 
-        this.searchApi(this.startDate, this.lastDate).subscribe(apods => {
+        this.fetching = true;
+
+        this.nasaApiService.search(this.startDate, this.lastDate).subscribe(apods => {
           this.apods = apods;
+          this.fetching = false;
         });
       }
-    });
-  }
-
-  searchApi(startDate: Date, endDate: Date): Observable<ApodInfos[]> {
-    return new Observable<ApodInfos[]>(subscriber => {
-      this.fetching = true;
-
-      this.nasaApiService.search(startDate, endDate).subscribe(apods => {
-        this.fetching = false;
-        subscriber.next(apods);
-      });
     });
   }
 
@@ -63,14 +56,17 @@ export class SearchComponent implements OnInit {
 
   loadMore() {
     if (this.lastDate < this.endDate) {
-      const startDate = this.lastDate;
+      const startDate = this.dateService.addDays(this.lastDate, 1);
       this.lastDate = this.dateService.addDays(this.lastDate, 10);
       if (this.lastDate > this.endDate) {
         this.lastDate = this.endDate;
       }
 
-      this.searchApi(startDate, this.lastDate).subscribe(apods => {
+      this.fetchingMore = true;
+
+      this.nasaApiService.search(startDate, this.lastDate).subscribe(apods => {
         this.apods = [...this.apods, ...apods];
+        this.fetchingMore = false;
       });
     }
   }

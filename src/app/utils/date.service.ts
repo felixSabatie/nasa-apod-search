@@ -20,7 +20,7 @@ export class DateService {
 
   addDays(date: Date, nbDays: number): Date {
     const newDate = new Date(date);
-    date.setDate(newDate.getDate() + nbDays);
+    newDate.setDate(newDate.getDate() + nbDays);
     return newDate;
   }
 
