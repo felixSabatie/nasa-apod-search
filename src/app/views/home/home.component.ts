@@ -21,4 +21,10 @@ export class HomeComponent implements OnInit {
     } });
   }
 
+  random() {
+    this.router.navigate(['/search'], { queryParams: {
+      random: true,
+    } });
+  }
+
 }
