@@ -10,7 +10,7 @@
       <div class="top-bar">
           <a routerLink="/"><img class="logo" src="assets/nasa-logo.png" alt="nasa-logo"></a>
         <app-search-form class="form" [defaultStartDate]="startDate" [defaultEndDate]="endDate" 
-        (launchSearch)="search($event)" (launchRandom)="getRandomApods()"></app-search-form>
+        (launchSearch)="search($event)" (launchRandom)="random()"></app-search-form>
       </div>
       <app-loader *ngIf="fetching"></app-loader>
       <div *ngIf="!fetching" class="results">

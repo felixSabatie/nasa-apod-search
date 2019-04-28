@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParamMap.subscribe(queryParams => {
-      if(queryParams.has('startDate') && queryParams.has('endDate')) {
+      if (queryParams.has('startDate') && queryParams.has('endDate')) {
         this.startDate = new Date(queryParams.get('startDate'));
         this.endDate = new Date(queryParams.get('endDate'));
 
@@ -71,6 +71,12 @@ export class SearchComponent implements OnInit {
     this.router.navigate(['/search'], { queryParams: {
       startDate: this.dateService.dateToUrlParam(e.startDate),
       endDate: this.dateService.dateToUrlParam(e.endDate),
+    } });
+  }
+
+  random() {
+    this.router.navigate(['/search'], { queryParams: {
+      random: true,
     } });
   }
 
