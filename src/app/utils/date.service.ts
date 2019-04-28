@@ -6,9 +6,15 @@ import { Injectable } from '@angular/core';
 export class DateService {
 
   dateToUrlParam(date: Date): string {
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
+    let day = '' + date.getDate();
+    if (day.length === 1) {
+      day = '0' + day;
+    }
+    let month = '' + (date.getMonth() + 1);
+    if (month.length === 1) {
+      month = '0' + month;
+    }
+    const year = '' + date.getFullYear();
     return `${year}-${month}-${day}`;
   }
 
