@@ -3,7 +3,10 @@
     <div *ngIf="error" class="error">
       The url is malformed ! <a class=btn routerLink="/">Go back home</a>
     </div>
-    <div *ngIf="!error">
+    <div *ngIf="apiError" class="error">
+      The api did an oopsie ! <a class=btn routerLink="/">Go back home</a>
+    </div>
+    <div *ngIf="!error && !apiError">
       <div class="top-bar">
           <app-search-form [defaultStartDate]="startDate" [defaultEndDate]="endDate" 
           (launchSearch)="search($event)" (launchRandom)="getRandomApods()"></app-search-form>

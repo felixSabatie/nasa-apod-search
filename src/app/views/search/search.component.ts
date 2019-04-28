@@ -19,6 +19,7 @@ export class SearchComponent implements OnInit {
   fetching = false;
   fetchingMore = false;
   error = false;
+  apiError = false;
 
   constructor(private route: ActivatedRoute, private nasaApiService: NasaApiService,
               private router: Router, private dateService: DateService) { }
@@ -53,7 +54,7 @@ export class SearchComponent implements OnInit {
       this.nasaApiService.search(this.startDate, this.lastDate).subscribe(apods => {
         this.apods = apods;
         this.fetching = false;
-      });
+      }, error => this.notifyApiError(error));
     }
   }
 
@@ -63,7 +64,7 @@ export class SearchComponent implements OnInit {
     this.nasaApiService.random(10).subscribe(apods => {
       this.apods = apods;
       this.fetching = false;
-    });
+    }, error => this.notifyApiError(error));
   }
 
   search(e) {
@@ -86,8 +87,13 @@ export class SearchComponent implements OnInit {
       this.nasaApiService.search(startDate, this.lastDate).subscribe(apods => {
         this.apods = [...this.apods, ...apods];
         this.fetchingMore = false;
-      });
+      }, error => this.notifyApiError(error));
     }
+  }
+
+  notifyApiError(error) {
+    console.error(error);
+    this.apiError = true;
   }
 
 }
