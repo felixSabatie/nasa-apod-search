@@ -1,5 +1,9 @@
 <div class="home">
-  <div class="form-container box-shadow">
-      <app-search-form (launchSearch)=search($event)></app-search-form>
+  <div class="home-card box-shadow">
+    <div class="form-container">
+        <h1 class="title">Nasa Astronomy Picture Of the Day Search</h1>
+        <img class="logo" src="assets/nasa-logo.png" alt="nasa-logo">
+        <app-search-form class="form" (launchSearch)=search($event)></app-search-form>
+      </div>
   </div>
 </div>

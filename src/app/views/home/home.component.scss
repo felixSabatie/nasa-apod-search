@@ -1,17 +1,61 @@
 @import "../../styles/colors";
 
+$animationDuration: 1s;
+
 .home {
   height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 
-  .form-container {
+  .home-card {
     width: 700px;
     max-width: 90%;
     border-radius: 10px;
     padding: 10px;
-    background-color: $white;
+    background-color: $translucentBackground;
+    box-sizing: border-box;
+
+    animation: $animationDuration appear-scale ease-in-out;
+
+    .form-container {
+      animation: $animationDuration appear-opacity ease-in-out;
+      .title {
+        margin: 10px 0 0 0;
+      }
+  
+      .logo {
+        margin: 10px 0;
+        width: 250px;
+        height: 250px;
+      }
+    }
+  }
+}
+
+@keyframes appear-scale {
+  from {
+    transform: scale(.05);
+  }
+  50% {
+    transform: scaleX(1);
+    transform: scaleY(.05);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes appear-opacity {
+  from {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;    
+  }
+  100% {
+    opacity: 1;
   }
 }
