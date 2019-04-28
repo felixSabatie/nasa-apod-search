@@ -1,27 +1,24 @@
 # NasaApodSearch
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
+L'application est hébergée à l'adresse suivante : [https://felixsabatie.github.io/nasa-apod-search](https://felixsabatie.github.io/nasa-apod-search)
 
-## Development server
+## Fonctionnalités
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* Recherche d'images par dates
+* Affichage d'images aléatoires
+* Chargement des images 10 par 10 si plus de 10 dates sont demandées
+* Affichage des détails à l'aide d'une pop-in
+* Stockage de la recherche dans l'url
+* Gestion des vidéos
 
-## Code scaffolding
+## Technologies
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Ce projet a été réalisé avec Angular 7
 
-## Build
+### Dépendences
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Seule la dépendence "ng-pick-datetime" a été ajoutée pour le sélectionneur de date, le reste de l'application a été créé avec les outils proposés par Angular.
 
-## Running unit tests
+### Déploiement
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+J'ai ajouté un script de "déploiement" au fichier "package.json" qui permet de build l'application et de la copier dans le dossier "docs" utilisé par github pour héberger l'application sur github pages. Pour déployer l'application, entrer la commande `npm run deploy` et faire un commit sur la branche `master`
