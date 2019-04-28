@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NasaApiService } from 'src/app/services/nasa-api.service';
 import { ApodInfos } from 'src/app/models/ApodInfos.model';
 import { DateService } from 'src/app/utils/date.service';
+import { Observable, Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -12,8 +13,11 @@ import { DateService } from 'src/app/utils/date.service';
 export class SearchComponent implements OnInit {
   startDate: Date;
   endDate: Date;
+  lastDate: Date;
   apods: ApodInfos[];
+
   fetching = false;
+  fetchingMore = false;
   error = false;
 
   constructor(private route: ActivatedRoute, private nasaApiService: NasaApiService,
@@ -27,17 +31,19 @@ export class SearchComponent implements OnInit {
       if (isNaN(this.startDate.getTime()) || isNaN(this.endDate.getTime()) || this.startDate > this.endDate) {
         this.error = true;
       } else {
-        this.searchApi();
-      }
-    });
-  }
+        if (this.dateService.differenceInDays(this.startDate, this.endDate) > 10) {
+          this.lastDate = this.dateService.addDays(this.startDate, 9);
+        } else {
+          this.lastDate = this.endDate;
+        }
 
-  searchApi() {
-    // TODO limit number of images requested
-    this.fetching = true;
-    this.nasaApiService.search(this.startDate, this.endDate).subscribe(apods => {
-      this.apods = apods;
-      this.fetching = false;
+        this.fetching = true;
+
+        this.nasaApiService.search(this.startDate, this.lastDate).subscribe(apods => {
+          this.apods = apods;
+          this.fetching = false;
+        });
+      }
     });
   }
 
@@ -46,6 +52,23 @@ export class SearchComponent implements OnInit {
       startDate: this.dateService.dateToUrlParam(e.startDate),
       endDate: this.dateService.dateToUrlParam(e.endDate),
     } });
+  }
+
+  loadMore() {
+    if (this.lastDate < this.endDate) {
+      const startDate = this.dateService.addDays(this.lastDate, 1);
+      this.lastDate = this.dateService.addDays(this.lastDate, 10);
+      if (this.lastDate > this.endDate) {
+        this.lastDate = this.endDate;
+      }
+
+      this.fetchingMore = true;
+
+      this.nasaApiService.search(startDate, this.lastDate).subscribe(apods => {
+        this.apods = [...this.apods, ...apods];
+        this.fetchingMore = false;
+      });
+    }
   }
 
 }
