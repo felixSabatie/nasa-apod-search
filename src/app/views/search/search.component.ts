@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NasaApiService } from 'src/app/services/nasa-api.service';
 import { ApodInfos } from 'src/app/models/ApodInfos.model';
 import { DateService } from 'src/app/utils/date.service';
-import { Observable, Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -20,6 +19,7 @@ export class SearchComponent implements OnInit {
   fetchingMore = false;
   error = false;
   apiError = false;
+  randomParamInRoute = false;
 
   constructor(private route: ActivatedRoute, private nasaApiService: NasaApiService,
               private router: Router, private dateService: DateService) { }
@@ -32,6 +32,7 @@ export class SearchComponent implements OnInit {
 
         this.getApodsByDates();
       } else if (queryParams.has('random')) {
+        this.randomParamInRoute = true;
         this.getRandomApods();
       } else {
         this.error = true;
@@ -68,6 +69,7 @@ export class SearchComponent implements OnInit {
   }
 
   search(e) {
+    this.randomParamInRoute = false;
     this.router.navigate(['/search'], { queryParams: {
       startDate: this.dateService.dateToUrlParam(e.startDate),
       endDate: this.dateService.dateToUrlParam(e.endDate),
@@ -75,9 +77,13 @@ export class SearchComponent implements OnInit {
   }
 
   random() {
-    this.router.navigate(['/search'], { queryParams: {
-      random: true,
-    } });
+    if (this.randomParamInRoute) {
+      this.getRandomApods();
+    } else {
+      this.router.navigate(['/search'], { queryParams: {
+        random: true,
+      } });
+    }
   }
 
   loadMore() {
