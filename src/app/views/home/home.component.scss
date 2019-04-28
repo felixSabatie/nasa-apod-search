@@ -1,5 +1,7 @@
 @import "../../styles/colors";
 
+$animationDuration: 1s;
+
 .home {
   height: 100vh;
   width: 100vw;
@@ -8,21 +10,52 @@
   justify-content: center;
   text-align: center;
 
-  .form-container {
+  .home-card {
     width: 700px;
     max-width: 90%;
     border-radius: 10px;
     padding: 10px;
-    background-color: $translucentBackground;    
+    background-color: $translucentBackground;
+    box-sizing: border-box;
 
-    .title {
-      margin: 10px 0 0 0;
-    }
+    animation: $animationDuration appear-scale ease-in-out;
 
-    .logo {
-      margin: 10px 0;
-      width: 250px;
-      height: 250px;
+    .form-container {
+      animation: $animationDuration appear-opacity ease-in-out;
+      .title {
+        margin: 10px 0 0 0;
+      }
+  
+      .logo {
+        margin: 10px 0;
+        width: 250px;
+        height: 250px;
+      }
     }
+  }
+}
+
+@keyframes appear-scale {
+  from {
+    transform: scale(.05);
+  }
+  50% {
+    transform: scaleX(1);
+    transform: scaleY(.05);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes appear-opacity {
+  from {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;    
+  }
+  100% {
+    opacity: 1;
   }
 }
