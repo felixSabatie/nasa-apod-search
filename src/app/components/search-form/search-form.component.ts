@@ -7,6 +7,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 })
 export class SearchFormComponent implements OnInit {
   @Output() launchSearch = new EventEmitter();
+  @Output() launchRandom = new EventEmitter();
   @Input() defaultStartDate: Date;
   @Input() defaultEndDate: Date;
 
@@ -27,6 +28,10 @@ export class SearchFormComponent implements OnInit {
 
   search() {
     this.launchSearch.emit({startDate: this.startDate, endDate: this.endDate});
+  }
+
+  random() {
+    this.launchRandom.emit();
   }
 
 }
