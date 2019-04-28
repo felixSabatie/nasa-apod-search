@@ -5,7 +5,8 @@
     </div>
     <div *ngIf="!error">
       <div class="top-bar">
-          <app-search-form [defaultStartDate]="startDate" [defaultEndDate]="endDate" (launchSearch)="search($event)"></app-search-form>
+          <app-search-form [defaultStartDate]="startDate" [defaultEndDate]="endDate" 
+          (launchSearch)="search($event)" (launchRandom)="getRandomApods()"></app-search-form>
       </div>
       <app-loader *ngIf="fetching"></app-loader>
       <div *ngIf="!fetching" class="results">

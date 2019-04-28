@@ -27,4 +27,17 @@ export class NasaApiService {
         } as ApodInfos;
       })));
   }
+
+  random(nbPics: number): Observable<ApodInfos[]> {
+    const url = `https://api.nasa.gov/planetary/apod?api_key=${apiConfig.key}&count=${nbPics}`;
+
+    return this.http.get<any>(url)
+      .pipe(map((response: Array<any>) => response.map(rawApod => {
+        return {
+          ...rawApod,
+          date: new Date(Date.parse(rawApod.date)),
+          mediaType: rawApod.media_type,
+        } as ApodInfos;
+      })));
+  }
 }

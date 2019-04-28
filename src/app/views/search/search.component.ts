@@ -25,25 +25,44 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParamMap.subscribe(queryParams => {
-      this.startDate = new Date(queryParams.get('startDate'));
-      this.endDate = new Date(queryParams.get('endDate'));
+      if(queryParams.has('startDate') && queryParams.has('endDate')) {
+        this.startDate = new Date(queryParams.get('startDate'));
+        this.endDate = new Date(queryParams.get('endDate'));
 
-      if (isNaN(this.startDate.getTime()) || isNaN(this.endDate.getTime()) || this.startDate > this.endDate) {
-        this.error = true;
+        this.getApodsByDates();
+      } else if (queryParams.has('random')) {
+        this.getRandomApods();
       } else {
-        if (this.dateService.differenceInDays(this.startDate, this.endDate) > 10) {
-          this.lastDate = this.dateService.addDays(this.startDate, 9);
-        } else {
-          this.lastDate = this.endDate;
-        }
-
-        this.fetching = true;
-
-        this.nasaApiService.search(this.startDate, this.lastDate).subscribe(apods => {
-          this.apods = apods;
-          this.fetching = false;
-        });
+        this.error = true;
       }
+    });
+  }
+
+  getApodsByDates() {
+    if (isNaN(this.startDate.getTime()) || isNaN(this.endDate.getTime()) || this.startDate > this.endDate) {
+      this.error = true;
+    } else {
+      if (this.dateService.differenceInDays(this.startDate, this.endDate) > 10) {
+        this.lastDate = this.dateService.addDays(this.startDate, 9);
+      } else {
+        this.lastDate = this.endDate;
+      }
+
+      this.fetching = true;
+
+      this.nasaApiService.search(this.startDate, this.lastDate).subscribe(apods => {
+        this.apods = apods;
+        this.fetching = false;
+      });
+    }
+  }
+
+  getRandomApods() {
+    this.fetching = true;
+
+    this.nasaApiService.random(10).subscribe(apods => {
+      this.apods = apods;
+      this.fetching = false;
     });
   }
 
