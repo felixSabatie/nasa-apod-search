@@ -14,6 +14,7 @@ export class SearchFormComponent implements OnInit {
   today = new Date();
   startDate = new Date();
   endDate = new Date();
+  minDate = new Date('1995-06-16');
 
   constructor() { }
 

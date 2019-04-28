@@ -2,7 +2,7 @@
   <div class="date-input">
     <label for="start-date-input">Between</label>
     <input id="start-date-input" type="text" [(ngModel)]="startDate" name="start-date" readonly
-      [max]="endDate" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" autocomplete="off" required>
+      [min]="minDate" [max]="endDate" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" autocomplete="off" required>
     <owl-date-time pickerType="calendar" #dt1></owl-date-time>
   </div>
 
