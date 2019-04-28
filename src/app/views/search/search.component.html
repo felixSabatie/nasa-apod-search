@@ -1,15 +1,16 @@
 <div class="search">
   <div class="search-content">
     <div *ngIf="error" class="error">
-      The url is malformed ! <a class=btn routerLink="/">Go back home</a>
+      The url is malformed ! <a class="btn" routerLink="/">Go back home</a>
     </div>
     <div *ngIf="apiError" class="error">
-      The api did an oopsie ! <a class=btn routerLink="/">Go back home</a>
+      The api did an oopsie ! <a class="btn" routerLink="/">Go back home</a>
     </div>
     <div *ngIf="!error && !apiError">
       <div class="top-bar">
-          <app-search-form [defaultStartDate]="startDate" [defaultEndDate]="endDate" 
-          (launchSearch)="search($event)" (launchRandom)="getRandomApods()"></app-search-form>
+          <a routerLink="/"><img class="logo" src="assets/nasa-logo.png" alt="nasa-logo"></a>
+        <app-search-form class="form" [defaultStartDate]="startDate" [defaultEndDate]="endDate" 
+        (launchSearch)="search($event)" (launchRandom)="getRandomApods()"></app-search-form>
       </div>
       <app-loader *ngIf="fetching"></app-loader>
       <div *ngIf="!fetching" class="results">
