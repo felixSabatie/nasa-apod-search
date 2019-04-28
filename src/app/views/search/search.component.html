@@ -15,7 +15,7 @@
       <app-loader *ngIf="fetching"></app-loader>
       <div *ngIf="!fetching" class="results">
         <app-apod class="apod" *ngFor="let apod of apods" [apod]="apod"></app-apod>
-        <div class="load-more box-shadow" *ngIf="lastDate < endDate && !fetchingMore" (click)="loadMore()">Load more</div>
+        <div class="load-more box-shadow" *ngIf="lastDate < endDate && !fetchingMore && !randomParamInRoute" (click)="loadMore()">Load more</div>
         <app-loader class="load-more" *ngIf="fetchingMore"></app-loader>
       </div>
     </div>
